@@ -28,6 +28,7 @@ def readadc(adcnum): #read out the ADC
 
 #configure device and call readadc function to retrieve input from pH sensor device
 def main():
+    msg = ""
     root = Tk()
     frame = ttk.Frame(root, width=400, height=400, padding=10)
     frame.grid()
@@ -44,7 +45,7 @@ def main():
         #update Label value
         frameLabel.config(text = "pH Value: " + msg)
         #place update widget in GUI window
-        #frameLabel.pack()
+        frameLabel.pack()
         root.mainloop()
         time.sleep(10)
 
