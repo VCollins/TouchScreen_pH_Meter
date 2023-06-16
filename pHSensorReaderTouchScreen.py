@@ -44,7 +44,7 @@ def main():
         #update Label value
         frameLabel.config(text = "pH Value: " + msg)
         #place update widget in GUI window
-        frameLabel.pack()
+        #frameLabel.pack()
         root.mainloop()
         time.sleep(10)
 
