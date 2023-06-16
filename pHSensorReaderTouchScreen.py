@@ -29,7 +29,7 @@ def readadc(adcnum): #read out the ADC
 def main():
     msg = ""
     root = Tk()
-    frame = Frame(root, width=400, height=400, padding=10)
+    frame = Frame(root, width=400, height=400)
     frame.grid()
     frameButton = Button(frame, text="Quit", command=root.destroy).grid(column=0, row=1, padx=100, pady=20)
     frameLabel = Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)
