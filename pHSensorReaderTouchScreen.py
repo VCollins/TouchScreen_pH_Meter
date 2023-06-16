@@ -40,6 +40,7 @@ def main():
         calibrationValue = 1.045
         pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
         msg = str(round(pHValue, 2))
+        time.sleep(1)
         #update Label value
         frameLabel.config(text = "pH Value: " + msg)
         #place update widget in GUI window
