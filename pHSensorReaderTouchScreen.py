@@ -3,6 +3,8 @@ import time
 import spidev
 import RPi.GPIO as GPIO
 import sys
+from tkinter import *
+from tkinter import ttk
 
 # set up GPIO pin configuration
 GPIO.setmode(GPIO.BCM)
@@ -26,6 +28,10 @@ def readadc(adcnum): #read out the ADC
 
 #configure device and call readadc function to retrieve input from pH sensor device
 def main():
+    root = Tk()
+    frame = ttk.Frame(root, width=400, height=400, padding=10)
+    frame.grid()
+    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=0)
     while True:
         returnedValue = readadc(1) #read adc channel 1
         calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
@@ -35,5 +41,7 @@ def main():
         msg = str(round(pHValue, 2))
         print(msg)
         time.sleep(10)
+        ttk.Label(frame, text=msg).grid(column=0, row=0)
+        root.mainloop()
 
 main()
