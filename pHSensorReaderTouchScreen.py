@@ -11,6 +11,7 @@ GPIO.setwarnings(False)
 GPIO.setup(21, GPIO.OUT)
 servo = GPIO.PWM(21, 50)
 servo.start(2.5)
+msg = " "
 
 # set up SPI for pH Sensor as main program focus
 spiMain = spidev.SpiDev() #create spi object
@@ -27,7 +28,7 @@ def readadc(adcnum): #read out the ADC
 
 #configure device and call readadc function to retrieve input from pH sensor device
 def main():
-    msg = str(" ")
+    global msg
     root = Tk()
     frame = Frame(root, width=400, height=400)
     frame.grid()
@@ -40,7 +41,8 @@ def main():
         calibrationValue = 1.045
         pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
         msg = "pH Value: " + str(round(pHValue, 2))
-        time.sleep(1)
+        time.sleep(5)
+        print(msg)
         #update Label value
         frameLabel.config(text = msg)
         #place updated widget in GUI window
