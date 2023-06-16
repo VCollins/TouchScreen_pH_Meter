@@ -46,7 +46,7 @@ def main():
         #introduce slight delay before updating label
         time.sleep(5) 
         #update Label value
-        frameLabel.configure(text=msg)
+        frameLabel.config(text=msg)
         frameLabel.pack()
         frame.mainloop()
         time.sleep(10)
