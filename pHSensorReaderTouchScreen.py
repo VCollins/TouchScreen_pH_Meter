@@ -1,6 +1,6 @@
 #import relevant libraries
 import time
-import spidev as 
+import spidev
 import RPi.GPIO as GPIO
 import sys
 
