@@ -31,7 +31,8 @@ def main():
     root = Tk()
     frame = ttk.Frame(root, width=400, height=400, padding=10)
     frame.grid()
-    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=0, padx=100)
+    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=0, row=1, padx=100, pady=20)
+    frameLabel = ttk.Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)
     while True:
         returnedValue = readadc(1) #read adc channel 1
         calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
@@ -39,7 +40,10 @@ def main():
         calibrationValue = 1.045
         pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
         msg = str(round(pHValue, 2))
-        ttk.Label(frame, text=msg).grid(column=0, row=0, padx=100)
+        #update Label value
+        frameLabel.config(text = "pH Value: " + msg)
+        #place update widget in GUI window
+        frameLabel.pack()
         root.mainloop()
         time.sleep(10)
 
