@@ -1,6 +1,6 @@
 #import relevant libraries
 import time
-import spidev
+import spidev as 
 import RPi.GPIO as GPIO
 import sys
 
@@ -25,8 +25,7 @@ def readadc(adcnum): #read out the ADC
     return adcout
 
 #configure device and call readadc function to retrieve input from pH sensor device
-def main(n, block_orientation, rotate, inreverse):
-    serial = spi(port=1, device=0, gpio=noop())
+def main():
     while True:
         returnedValue = readadc(1) #read adc channel 1
         calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
