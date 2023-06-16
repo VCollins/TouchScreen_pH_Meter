@@ -27,7 +27,7 @@ def readadc(adcnum): #read out the ADC
 
 #configure device and call readadc function to retrieve input from pH sensor device
 def main():
-    msg = ""
+    msg = str(" ")
     root = Tk()
     frame = Frame(root, width=400, height=400)
     frame.grid()
