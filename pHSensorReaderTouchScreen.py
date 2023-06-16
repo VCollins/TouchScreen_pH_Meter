@@ -3,6 +3,7 @@ import time
 import spidev
 import RPi.GPIO as GPIO
 import sys
+import tkinter as tk
 from tkinter import *
 
 # set up GPIO pin configuration
@@ -29,10 +30,12 @@ def readadc(adcnum): #read out the ADC
 #configure device and call readadc function to retrieve input from pH sensor device
 def main():
     global msg
-    root = Tk()
-    frame = Frame(root, width=400, height=400)
+    frame = tk.Tk()
+    frame.geometry('400x400')
+    frame.resizable(False, False)
     frame.grid()
-    frameButton = Button(frame, text="Quit", command=root.destroy).grid(column=0, row=1, padx=100, pady=20)    
+    frameButton = Button(frame, text="Quit", command=frame.destroy).grid(column=0, row=1, padx=100, pady=20)
+    frameLabel = Label(frame, text="").grid(column=0, row=0, padx=100, pady=20)
     while True:
         returnedValue = readadc(1) #read adc channel 1
         calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
@@ -40,9 +43,12 @@ def main():
         calibrationValue = 1.045
         pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
         msg = "pH Value: " + str(round(pHValue, 2))
+        #introduce slight delay before updating label
+        time.sleep(5) 
         #update Label value
-        frameLabel = Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)        
-        root.mainloop()
+        frameLabel.configure(text=msg)
+        frameLabel.pack()
+        frame.mainloop()
         time.sleep(10)
 
 main()
