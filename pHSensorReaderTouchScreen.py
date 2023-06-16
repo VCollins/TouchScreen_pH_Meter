@@ -4,7 +4,6 @@ import spidev
 import RPi.GPIO as GPIO
 import sys
 from tkinter import *
-from tkinter import ttk
 
 # set up GPIO pin configuration
 GPIO.setmode(GPIO.BCM)
@@ -30,10 +29,10 @@ def readadc(adcnum): #read out the ADC
 def main():
     msg = ""
     root = Tk()
-    frame = ttk.Frame(root, width=400, height=400, padding=10)
+    frame = Frame(root, width=400, height=400, padding=10)
     frame.grid()
-    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=0, row=1, padx=100, pady=20)
-    frameLabel = ttk.Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)
+    frameButton = Button(frame, text="Quit", command=root.destroy).grid(column=0, row=1, padx=100, pady=20)
+    frameLabel = Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)
     while True:
         returnedValue = readadc(1) #read adc channel 1
         calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
@@ -44,7 +43,7 @@ def main():
         time.sleep(1)
         #update Label value
         frameLabel.config(text = "pH Value: " + msg)
-        #place update widget in GUI window
+        #place updated widget in GUI window
         frameLabel.pack()
         root.mainloop()
         time.sleep(10)
