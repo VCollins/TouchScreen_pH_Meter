@@ -35,7 +35,7 @@ def main():
     frame.resizable(False, False)
     frame.grid()
     frameButton = Button(frame, text="Quit", command=frame.destroy).grid(column=0, row=1, padx=100, pady=20)
-    frameLabel = Label(frame, text="").grid(column=0, row=0, padx=100, pady=20)
+    frameLabel = Label(frame, text=" ").grid(column=0, row=0, padx=100, pady=20)
     while True:
         returnedValue = readadc(1) #read adc channel 1
         calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
