@@ -47,7 +47,6 @@ def main():
         time.sleep(5) 
         #update Label value
         frameLabel = Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)
-        frameLabel.pack()
         frame.mainloop()
         time.sleep(10)
 
