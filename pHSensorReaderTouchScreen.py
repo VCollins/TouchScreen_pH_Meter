@@ -36,4 +36,4 @@ def main():
         print(msg)
         time.sleep(10)
 
-main(4, -90, 0, False)
+main()
