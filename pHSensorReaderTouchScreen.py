@@ -53,6 +53,7 @@ class pHReaderFrame(tk.Tk):
             time.sleep(5) 
             #update Label value
             self.frameLabel = tk.Label(self, text=msg).grid(column=0, row=0, padx=100, pady=20)
+            self.after(1000, self.mainLoop)
 
 if __name__=="__main__":
     app = pHReaderFrame()
