@@ -49,6 +49,8 @@ class pHReaderFrame(tk.Tk):
             calibrationValue = 1.045
             pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
             msg = "pH Value: " + str(round(pHValue, 2))
+            #diagnostic message to check prgram execution
+            print(msg)
             #update Label value
             self.frameLabel = tk.Label(self, text=msg).grid(column=0, row=0, padx=100, pady=20)
             self.after(5000, self.mainLoop)
