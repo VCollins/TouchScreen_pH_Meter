@@ -31,10 +31,10 @@ class pHReaderFrame(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         #program statements for frame properties
-        self.geometry('600x400')
+        self.geometry('1000x500')
         self.resizable(False, False)
         self.grid()
-        self.frameButton = tk.Button(self, text="Quit", command=self.destroy).grid(column=0, row=1, padx=100, pady=20)
+        self.frameButton = tk.Button(self, text="Quit", command=self.destroy).grid(column=0, row=2, padx=100, pady=20)
         
         #start frame loop running
         self.mainLoop()
@@ -51,7 +51,7 @@ class pHReaderFrame(tk.Tk):
         #diagnostic message to check prgram execution
         print(msg)
         #update Label value
-        self.frameLabel = tk.Label(self, text=str(msg),font=("Arial", 36)).grid(column=0, row=0, padx=100, pady=20)
+        self.frameLabel = tk.Label(self, text=str(msg),font=("Arial", 50)).grid(column=0, row=0, padx=100, pady=20)
         self.after(5000, self.mainLoop)
 
 if __name__=="__main__":
