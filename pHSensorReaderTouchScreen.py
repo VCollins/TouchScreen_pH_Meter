@@ -29,7 +29,7 @@ def readadc(adcnum): #read out the ADC
 
 class pHReaderFrame(tk.Tk):
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init_(self, *args, **kwargs)
+        tk.Tk.__init__(self, *args, **kwargs)
         #program statements for frame properties
         self.geometry('400x400')
         self.resizable(False, False)
