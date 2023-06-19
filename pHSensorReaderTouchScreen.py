@@ -34,6 +34,7 @@ class pHReaderFrame(tk.Tk):
         self.geometry('1000x500')
         self.resizable(False, False)
         self.grid()
+        self.frameSpacer = tk.Label(self, text=" ",font=("Arial", 50)).grid(column=0, row=1, padx=100, pady=20)
         self.frameButton = tk.Button(self, text="Quit", command=self.destroy).grid(column=0, row=2, padx=100, pady=20)
         
         #start frame loop running
