@@ -18,3 +18,5 @@ RPi.GPIO 0.7.1 - Available at https://pypi.org/project/RPi.GPIO/
 tkinter v8.6.10 - Normally installed as part of the standard Python libraries
 
 I used a Waveshare 7-inch touchscreen device with a resolution of 1024 x 600 for testing, while development was done in Visual Studio Code.
+
+This project is available under the Creative Commons License suite.

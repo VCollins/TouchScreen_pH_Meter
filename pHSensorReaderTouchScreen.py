@@ -1,8 +1,8 @@
 #import relevant libraries
+import sys
 import time
 import spidev
 import RPi.GPIO as GPIO
-import sys
 import tkinter as tk
 from tkinter import *
 
@@ -27,27 +27,36 @@ def readadc(adcnum): #read out the ADC
     adcout = ((r[1] & 3) << 8) + r[2]
     return adcout
 
-#configure device and call readadc function to retrieve input from pH sensor device
-def main():
-    global msg
-    frame = tk.Tk()
-    frame.geometry('400x400')
-    frame.resizable(False, False)
-    frame.grid()
-    frameButton = Button(frame, text="Quit", command=frame.destroy).grid(column=0, row=1, padx=100, pady=20)
-    frameLabel = Label(frame, text=" ").grid(column=0, row=0, padx=100, pady=20)
-    while True:
-        returnedValue = readadc(1) #read adc channel 1
-        calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
-        gainvalue = 4665
-        calibrationValue = 1.045
-        pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
-        msg = "pH Value: " + str(round(pHValue, 2))
-        #introduce slight delay before updating label
-        time.sleep(5) 
-        #update Label value
-        frameLabel = Label(frame, text=msg).grid(column=0, row=0, padx=100, pady=20)
-        frame.mainloop()
-        time.sleep(10)
+class pHReaderFrame(tk.Tk):
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init_(self, *args, **kwargs)
+        #program statements for frame properties
+        self.geometry('400x400')
+        self.resizable(False, False)
+        self.grid()
+        self.frameButton = tk.Button(self, text="Quit", command=self.destroy).grid(column=0, row=1, padx=100, pady=20)
+        self.frameLabel = tk.Label(self, text=" ").grid(column=0, row=0, padx=100, pady=20)
+        self.frameLabel.pack()
+        self.frameButton.pack()
+        #start frame loop running
+        self.mainLoop()
+    
+    def mainLoop(self):
+        global msg
+        #call readadc function to retrieve input from pH sensor device
+        while True:
+            returnedValue = readadc(1) #read adc channel 1
+            calculatedValue = float(returnedValue / 1024) * (3.3 / 1000) #reading is in millivolts
+            gainvalue = 4665
+            calibrationValue = 1.045
+            pHValue = (14 - (gainvalue * calculatedValue * calibrationValue))
+            msg = "pH Value: " + str(round(pHValue, 2))
+            #introduce slight delay before updating label
+            time.sleep(5) 
+            #update Label value
+            self.frameLabel.configure(text=msg)
+            time.sleep(5)
 
-main()
+if __name__=="__main__":
+    app = pHReaderFrame()
+    app.mainloop()
