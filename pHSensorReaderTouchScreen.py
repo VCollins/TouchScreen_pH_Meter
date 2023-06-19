@@ -35,7 +35,7 @@ class pHReaderFrame(tk.Tk):
         self.resizable(False, False)
         self.grid()
         self.frameButton = tk.Button(self, text="Quit", command=self.destroy).grid(column=0, row=1, padx=100, pady=20)
-        self.frameLabel = tk.Label(self, text=" ").grid(column=0, row=0, padx=100, pady=20)
+        
         #start frame loop running
         self.mainLoop()
     
@@ -52,7 +52,7 @@ class pHReaderFrame(tk.Tk):
             #introduce slight delay before updating label
             time.sleep(5) 
             #update Label value
-            self.frameLabel.configure(text=msg)
+            self.frameLabel = tk.Label(self, text=msg).grid(column=0, row=0, padx=100, pady=20)
             time.sleep(5)
 
 if __name__=="__main__":
