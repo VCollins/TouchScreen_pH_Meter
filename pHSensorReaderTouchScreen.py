@@ -36,7 +36,6 @@ class pHReaderFrame(tk.Tk):
         self.grid()
         self.frameButton = tk.Button(self, text="Quit", command=self.destroy).grid(column=0, row=1, padx=100, pady=20)
         self.frameLabel = tk.Label(self, text=" ").grid(column=0, row=0, padx=100, pady=20)
-        self.frameLabel.pack()
         self.frameButton.pack()
         #start frame loop running
         self.mainLoop()
